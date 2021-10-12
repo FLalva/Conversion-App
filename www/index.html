@@ -1,0 +1,223 @@
+<!--Fatima Lalva Final Assignment-->
+<!--index.html-->
+
+<!--Revision History:-->
+<!--    Fatima Lalva, April 9, 2020: Created-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+		maximum-scale=1.0, user-scalable=no">
+    <title>Recipe Tools App</title>
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jquery-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--jquery mobile-->
+    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+    <!--jQuery Validation lib-->
+    <script src="js/lib/jquery.validate.js"></script>
+
+    <!--my stuff-->
+    <script src="js/database.js"></script>
+    <script src="js/STB-DAL.js"></script>
+    <script src="js/facade.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/global.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Mukta:wght@200&family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+<!--Page 4: Calculator-->
+<div id="pageCalculator" data-role="page">
+    <div data-role="panel" id="pnlCalculator" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" style="color: lightgreen;" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" data-icon="plus">Add Ingredient</a></li>
+            <li><a href="#pageView" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlCalculator" data-icon="bars" id="menuIconCalculator"></a><h1>Calculator</h1>
+    </header>
+    <section data-role="content">
+<!--        <p>Enter the ingredient and the amount of cups you want to convert (exp .5)</p>-->
+        <form id="frmCalculate" name="frmCalculate">
+            <label for="comboIngredient">Ingredient:</label>
+            <select name="comboIngredient" id="comboIngredient">
+
+            </select>
+
+            <label for="txtAmount">Amount:</label>
+            <input type="number" id="txtAmount" name="txtAmount">
+
+            <label for="comboUnit">Unit:</label>
+            <select name="comboUnit" id="comboUnit"></select>
+            <br>
+            <button class="font" id="btnCalculate" name="btnCalculate" type="button">Calculate</button>
+            <button class="font" id="btnClear" name="btnClear" type="button">Clear</button>
+        </form>
+        <br><br>
+        <div id="divResult" align="center">
+<!--            result appears here-->
+        </div>
+    </section>
+</div>
+
+<!--Page 5: Add-->
+<div id="pageAdd" data-role="page">
+    <div data-role="panel" id="pnlAdd" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" style="color: lightgreen;" data-icon="plus">Add Ingredient</a></li>
+            <li><a href="#pageView" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlAdd" data-icon="bars" id="menuIconAdd"></a><h1>Add Ingredient</h1>
+    </header>
+    <section data-role="content">
+        <p>Please enter the name of the ingredient and the weight of
+            that ingredient - in grams - for <strong>1 cup</strong>!</p>
+        <form id="frmAdd" name="frmAdd">
+            <label for="txtIngredient">Ingredient:</label>
+            <input type="text" id="txtIngredient" name="txtIngredient">
+            <div id="ingredientError" ></div>
+
+            <label for="txtWeight">Weight:</label>
+            <input type="number" id="txtWeight" name="txtWeight">
+            <br>
+            <button class="font" id="btnSubmitAdd" name="btnSubmitAdd" type="button">Submit</button>
+            <button class="font" id="btnClearIngredient" name="btnClearIngredient" type="button" data-theme="a">Clear</button>
+        </form>
+        <div data-role="popup" id="popupAdd" class="ui-content">
+            <p>Ingredient Successfully Added</p>
+            <button class="font" id="btnCloseAdd" name="btnCloseAdd" type="button">Close</button>
+        </div>
+    </section>
+</div>
+
+<!--Page 6: View-->
+<div id="pageView" data-role="page">
+    <div data-role="panel" id="pnlView" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" data-icon="plus">Add Ingredient</a></li>
+            <li><a href="#pageView" style="color: lightgreen;" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlView" data-icon="bars" id="menuIconView"></a><h1>View Ingredients</h1>
+    </header>
+    <section data-role="content">
+        <ul id="ingredientList" data-role="listview" class="ui-listview-inset ui-nodisc-icon" data-icon="alt">
+        </ul>
+        <button class="font" id="btnDeleteAllIngredients" name="btnDeleteAllIngredients" data-theme="b" type="button">Delete All Ingredients</button>
+        <div data-role="popup" id="popupDeleteIngredientsConfirmation" class="ui-content">
+            <p>Are you sure you want to delete ALL ingredients?</p>
+            <div align="center">
+                <button class="font" data-inline="true" id="btnDeleteYes" name="btnDeleteYes" type="button">Yes</button>
+                <button class="font" data-inline="true" id="btnDeleteCancel" name="btnDeleteCancel" type="button">Cancel</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!--Hidden Page 3: Edit-->
+<div id="pageEdit" data-role="page">
+    <div data-role="panel" id="pnlEdit" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" data-icon="plus">Add Ingredients</a></li>
+            <li><a href="#pageView" style="color: lightgreen;" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlEdit" data-icon="bars" id="menuIconEdit"></a><h1>Edit/Delete Ingredients</h1>
+    </header>
+    <section data-role="content">
+        <p>Please enter the name of the ingredient and the weight of
+            that ingredient - in grams - for <strong>1 cup</strong>!</p>
+        <form id="frmEdit" name="frmEdit">
+            <label for="txtIngredientEdit">Ingredient:</label>
+            <input type="text" id="txtIngredientEdit" name="txtIngredientEdit">
+
+            <label for="txtWeightEdit">Weight (in grams):</label>
+            <input type="number" id="txtWeightEdit" name="txtWeightEdit">
+            <br>
+            <button class="font" id="btnUpdate" name="btnUpdate" type="button">Update</button>
+            <button class="font" id="btnDelete" name="btnDelete" data-theme="b" type="button">Delete</button>
+            <a href="#" data-role="button" class="font" data-rel="back" data-theme="a">Cancel</a>
+        </form>
+    </section>
+</div>
+</body>
+</html>
+
+<!--Page 7: Recipe Conversion-->
+<div id="pageConversion" data-role="page">
+    <div data-role="panel" id="pnlConversion" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" data-icon="plus">Add Ingredient</a></li>
+            <li><a href="#pageView" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" style="color: lightgreen;" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlConversion" data-icon="bars" id="menuIconConversion"></a><h1>Recipe Conversion</h1>
+    </header>
+    <section data-role="content">
+        <p>Convert the quantity of your recipe!</p>
+        <form id="frmConvert" name="frmConvert">
+            <label for="txtServings">Original Serving:</label>
+            <input type="number" name="txtServings" id="txtServings">
+
+            <label for="txtDesiredServing">Desired Serving:</label>
+            <input type="number" name="txtDesiredServing" id="txtDesiredServing">
+
+
+            <label for="txtIngredientList">Ingredient List</label>
+            <textarea name="txtIngredientList" id="txtIngredientList" cols="30" rows="10" placeholder="Paste ingredients here, one per line. Example:   200 g sugar                                                     NOTE: Please convert quantities like 1 1/2 cup to 1.5 cups"></textarea>
+
+            <button class="font" id="btnConvert" name="btnConvert" type="button">Convert</button>
+        </form>
+        <br>
+        <div id="divConvertedIngredients">
+<!--            converted ingredients go here, one per line-->
+        </div>
+    </section>
+</div>
+
+<!--Page 8: About-->
+<div id="pageAbout" data-role="page">
+    <div data-role="panel" id="pnlAbout" data-display="overlay" class="panels">
+        <ul>
+            <li><a href="#pageCalculator" data-icon="star">Calculator</a></li>
+            <li><a href="#pageAdd" data-icon="plus">Add Ingredient</a></li>
+            <li><a href="#pageView" data-icon="bullets">View Ingredients</a></li>
+            <li><a href="#pageConversion" data-icon="edit">Conversion</a></li>
+            <li><a href="#pageAbout" style="color: lightgreen;" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <header data-role="header">
+        <a href="#pnlAbout" data-icon="bars" id="menuIconAbout"></a><h1>About</h1>
+    </header>
+    <section data-role="content">
+        <p>Any questions and feedbacks, please email:</p>
+        <a href="mailto:sweeterthings17@gmail.com" data-icon="mail"
+           data-role="button" class="font" style="background-color: lightgreen; border: none">EMAIL</a>
+        <p>Check out my <a href="http://instagram.com/sweeterthings_17">Instagram</a></p>
+
+    </section>
+</div>

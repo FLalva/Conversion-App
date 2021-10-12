@@ -1,0 +1,135 @@
+/*Fatima Lalva Final Assignment*/
+/*mystyle.css*/
+
+/*Revision History:*/
+/*Fatima Lalva, April 9, 2020: Created*/
+
+.panels li{
+    list-style-type: none;
+    border-bottom: 1px solid black;
+}
+
+#pnlHome, #pnlAbout, #pnlAdd, #pnlCalculator, #pnlEdit, #pnlView, #pnlConversion, #pnlOrder, #pnlAddRecipe, #pnlEditRecipes, #pnlViewARecipe, #pnlViewRecipes{
+    background-color: white;
+}
+
+#pnlHome a, #pnlAbout a, #pnlAdd a, #pnlCalculator a, #pnlEdit a, #pnlView a, #pnlConversion a, #pnlOrder a, #pnlAddRecipe a, #pnlEditRecipes a, #pnlViewARecipe a, #pnlViewRecipes a{
+    color: lightpink;
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 1.65em;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, .font {
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    font-family: 'Mukta', sans-serif;
+}
+
+#menuIconAddRecipe, #menuIconViewARecipe, #menuIconViewAllRecipes, #menuIconEditRecipe, #menuIconHome, #menuIconOrder, #menuIconAbout, #menuIconAdd, #menuIconCalculator, #menuIconEdit, #menuIconConversion, #menuIconView {
+    background: none;
+    border: none;
+    box-shadow: none;
+    height: 50%;
+}
+
+#link {
+    color: black;
+    font-weight: bold;
+}
+
+#btnUpdate, #btnCalculate, #btnConvert, #btnSubmitAdd, #btnClose, #btnCloseAdd, #btnDeleteCancel, #btnDeleteYes, #btnAddRecipe, #btnEditRecipe, #btnUpdateRecipe, #btnSearch, #btnRecipeYes, #btnRecipeCancel, #btnChangeQuantity {
+    background-color: lightgreen;
+    border-color: lightgreen;
+}
+
+label.error {
+    color: #F00;
+    font-weight: bold;
+    background-color: lightpink;
+    margin: 0;
+}
+
+#ingredientError {
+    color: #F00;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 8px;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px solid red;
+}
+
+div ul {
+    padding-left: 0;
+}
+
+#leftPadding {
+    padding-left: 40px;
+}
+
+#divResult{
+    font-size: 3em;
+    font-weight: bolder;
+    background-color: lightgreen;
+    border: 1px dashed black;
+}
+
+#divConvertedIngredients {
+    font-size: 1em;
+    background-color: lightgreen;
+    border: 1px dashed black;
+}
+
+#divConvertedIngredients p {
+    margin: 3px 4px 8px 4px;
+}
+
+#ingredientList a{
+     background-color: white;
+     margin-bottom: 1em;
+     border: 1px dashed lightgreen;
+     font-size: 1.5em;
+     padding: 2px 8px;
+ }
+
+#recipeList a{
+    background-color: white;
+    margin-bottom: 1em;
+    border: 1px dashed lightgreen;
+    font-size: 1em;
+    padding: 2px 8px;
+}
+
+#divRecipeName {
+    text-align: center;
+    font-size: 1.5em;
+    padding-bottom: 5px;
+}
+
+#divYield {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+#divDescription, #divDirections {
+    padding-bottom: 5px;
+}
+
+.paddingBottom {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.spaceBottom {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
